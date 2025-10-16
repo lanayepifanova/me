@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lana Yepifanova</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background: #1a1a1a;
+            color: #d4d4d4;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        nav {
+            background: #0a0a0a;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #2a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #a0a0a0;
+            font-weight: 400;
+            transition: color 0.3s;
+            cursor: pointer;
+            font-size: 13px;
+            text-transform: lowercase;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #ffffff;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: #a0a0a0;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #ffffff;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .hero {
+            padding: 3rem 0 2rem 0;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+            color: #ffffff;
+        }
+
+        .hero p {
+            font-size: 14px;
+            color: #a0a0a0;
+            margin-bottom: 0.2rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #ffffff;
+            margin-bottom: 2rem;
+            margin-top: 3rem;
+            text-transform: lowercase;
+        }
+
+        .experience-item {
+            margin-bottom: 2.5rem;
+        }
+
+        .experience-item a {
+            color: #90BAAD;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .experience-item a:hover {
+            color: #A1E5AB;
+        }
+
+        .platform-link {
+            color: #90BAAD;
+            text-decoration: underline;
+            transition: color 0.3s;
+        }
+
+        .platform-link:hover {
+            color: #A1E5AB;
+        }
+
+        .company {
+            font-size: 15px;
+            color: #ffffff;
+            margin-bottom: 0.2rem;
+        }
+
+        .position {
+            font-size: 14px;
+            color: #b0b0b0;
+            margin-bottom: 0.2rem;
+        }
+
+        .date {
+            color: #717C89;
+            font-size: 13px;
+            margin-bottom: 0.8rem;
+        }
+
+        .description {
+            color: #a0a0a0;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .log-list {
+            list-style: none;
+        }
+
+        .log-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-item .title {
+            flex: 1;
+            color: #d4d4d4;
+            font-size: 14px;
+        }
+
+        .log-item .date {
+            color: #717C89;
+            font-size: 13px;
+        }
+
+        .startup-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .startup-hero {
+            font-family: 'Brush Script MT', cursive, 'Times New Roman', serif;
+            font-size: 4rem;
+            color: #90BAAD;
+            text-align: center;
+            margin: 3rem 0 2rem 0;
+            font-weight: 400;
+        }
+
+        .subsection-title {
+            color: #90BAAD;
+            font-size: 14px;
+            margin-top: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .content-platform {
+            margin-bottom: 2rem;
+        }
+
+        .platform-title {
+            color: #ffffff;
+            margin-bottom: 0.3rem;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a onclick="showSection('home')" class="active">home</a></li>
+                <li><a onclick="showSection('startups')">startups</a></li>
+                <li><a onclick="showSection('content')">content</a></li>
+                <li><a onclick="showSection('logs')">logs</a></li>
+            </ul>
+            <div class="social-links">
+                <a href="https://linkedin.com" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="https://github.com" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home" class="section active">
+        <div class="container">
+            <div class="hero">
+                <h1>Lana Yepifanova</h1>
+                <p>applied math @ rice university</p>
+                <p>resident of harvard st commons</p>
+            </div>
+
+            <h2 class="section-title">internships</h2>
+            
+            <div class="experience-item">
+                <div class="company"><a href="https://www.macquarie.com/en/about/company/commodities-and-global-markets" target="_blank">Macquarie Group</a></div>
+                <div class="position">commodities trading intern</div>
+                <div class="date">jun '26 - aug '26</div>
+                <div class="description">Incoming summer 2026 commodities trading intern at Macquarie Group in Houston, Texas.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company"><a href="https://www.jll.com" target="_blank">JLL</a></div>
+                <div class="position">software engineering intern</div>
+                <div class="date">jun '25 - aug '25</div>
+                <div class="description">Built software tools, analytics platforms, and digital products for commercial real estate and investment management. Improved data pipelines for property and financial data. Designed and implemented software modules for an IoT-enabled energy monitoring platform, improving data collection from building systems including HVAC, lighting, water, and sensors.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company"><a href="https://www.mixoads.com" target="_blank">Mixo Ads AI</a></div>
+                <div class="position">software engineering intern</div>
+                <div class="date">may '24 - sep '24</div>
+                <div class="description">Antler Accelerator NYC Cohort. Built internal tooling and APIs to automate ad deployment across multiple platforms including Google Ads and Facebook Ads, auto-generating ads for marketing campaigns. Reached out to 300+ franchise owners, conducted 70+ sales calls, and converted 8 new enterprise clients including gym owners, childcare centers, elderly care, chess tutoring, and others.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company"><a href="https://www.rudin.com" target="_blank">Rudin</a></div>
+                <div class="position">civil engineering intern</div>
+                <div class="date">jun '24 - aug '24</div>
+                <div class="description">Tested Nantum's predictive load-shifting and fault-detection algorithms against real building performance data, running reports in SQL, Excel, Power BI and Tableau to identify inefficiencies in building performance. Compared building-level energy intensity against LEED baseline models and NYC Energy Star Portfolio Manager benchmarks to pursue LEED documentation and Local Law 97 compliance.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company"><a href="https://www.slgreen.com" target="_blank">SL Green Realty Corp.</a></div>
+                <div class="position">civil engineering intern</div>
+                <div class="date">jun '23 - aug '23</div>
+                <div class="description">Supported due diligence for acquisitions and redevelopment projects through RFIs, material takeoffs, survey/GPS, delivery tracking, vendor coordination, editing site plans, and design using Bluebeam. Organized zoning, environmental, and civil compliance data into ready-to-submit packages. Created and maintained documentation for permits, code compliance, and construction planning.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company"><a href="https://www.nyc.gov/site/dep/water/drinking-water.page" target="_blank">NYC Department of Environmental Protection</a></div>
+                <div class="position">civil engineering intern</div>
+                <div class="date">jun '22 - aug '22</div>
+                <div class="description">Worked with large datasets using ArcGIS, AutoCAD, Excel, and SQL to map and analyze critical infrastructure assets including water mains, sewers, pump stations, and green infrastructure. Assisted in running hydraulic and hydrologic models such as InfoWorks, EPA SWMM, and HEC-RAS to simulate stormwater runoff, flood risk, and system capacity under different load conditions.</div>
+            </div>
+
+            <h2 class="section-title">research</h2>
+            
+            <div class="experience-item">
+                <div class="company"><a href="https://thhsclassic.com/19036/news/ninth-annual-humanities-symposium-features-presenters-audience-members-from-across-queens/" target="_blank">Caregiving Calamities: Intertwining Power with Parenting in Succession and King Lear</a></div>
+                <div class="date">queens college humanities symposium</div>
+                <div class="description">Earned "Best Presentation" award at the Queens College Humanities Symposium. Interviewed Succession actress Natalie Gold and wrote a 50+ page paper advised by Brian Sweeney.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company"><a href="https://www.sunhavenpartners.com" target="_blank">Sun Haven Partners</a></div>
+                <div class="position">search fund internship</div>
+                <div class="description">Sun Haven Partners is dedicated to identifying, acquiring, and operating one exceptional business with a long-term vision, rooted in a deep respect for the impact that businesses have on their communities.</div>
+            </div>
+
+            <h2 class="section-title">projects</h2>
+            
+            <div class="experience-item">
+                <div class="company"><a href="https://www.steelhawks.net" target="_blank">FIRST Robotics Team</a></div>
+                <div class="position">electrical engineering</div>
+                <div class="description">Custom wiring layouts for motor controllers, sensors, pneumatics, and control systems using components like PDP, RoboRIO, Talon SRX/Victor SPX, and CAN bus networks.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company"><a href="https://oedk.rice.edu/teams" target="_blank">PTeam: Oshman Engineering Design Kitchen</a></div>
+                <div class="description">Prototyped a physical therapy device for client at RED Labs, advised by Dr. Andi Gobin, to support those who struggle with following traditional ACL rehabilitation programs.</div>
+            </div>
+
+            <h2 class="section-title">education</h2>
+            
+            <div class="experience-item">
+                <div class="company"><a href="https://www.rice.edu" target="_blank">Rice University</a></div>
+                <div class="position">bachelor of arts - computational and applied mathematics</div>
+                <div class="date">2023 – 2027</div>
+                <div class="description">Ion District Houston, Liu Idea Lab for Innovation and Entrepreneurship, Oshman Engineering Design Kitchen, Fondren Digital Media Commons, Rice Sailing Team, Rice BASYK Dance Team.</div>
+            </div>
+
+            <div class="experience-item">
+                <div class="company"><a href="https://www.thhs.qc.edu" target="_blank">Townsend Harris High School</a></div>
+                <div class="date">2019 – 2023</div>
+                <div class="description">SAT Score: 1550. NYC Wrestling Champion (Girls, 2023). Performed at Chamber Music Society at Lincoln Center. Participated in Chamber Music Group, Spring Musical Pit Orchestra, Festival of Nations Dance Group, Girls Varsity Wrestling, Tennis, Swimming, Flag Football, and Track & Field.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="startups" class="section">
+        <div class="container">
+            <div class="startup-hero">Forge</div>
+            
+            <div class="startup-section">
+                <div class="subsection-title">the vision</div>
+                <div class="description">Forge is a hacker house I founded in Rice Village to bring the same energy, collaboration, and intensity I experienced while living in C House at Harvard to Houston and the Rice community. The vision behind Forge is to create a space where ambitious builders, founders, and engineers can live, learn, and create together. It's a home for people obsessed with ideas, late-night coding, and turning ambitious projects into reality. It's meant to bridge the gap between academia and real-world innovation by fostering a culture of experimentation, accountability, and momentum. At Forge, residents push each other to build fast, think boldly, and contribute to Houston's growing startup and tech ecosystem while staying grounded in the supportive, intellectually curious environment that Rice is known for.</div>
+                <div class="subsection-title">my role</div>
+                <div class="description">As the founder of Forge, I oversee every part of the house's operation from vision to execution. I handle resident recruiting, making sure each cohort is filled with ambitious builders who embody the spirit of the space. I also take the lead on securing sponsors and partnerships, managing fundraising efforts, and organizing events that bring together Houston's startup, tech, and academic communities. Beyond the strategic side, I'm deeply involved in the day-to-day coordinating logistics, maintaining the space, and ensuring the environment stays inspiring and functional. In many ways, I wear every hat: founder, operator, community builder, marketer, and cleaning. Because every detail matters when you're building something from the ground up.</div>
+            </div>
+
+            <div class="startup-hero" style="margin-top: 4rem;">Axis Academy</div>
+            
+            <div class="startup-section">
+                <div class="subsection-title">our work</div>
+                <div class="description">Developed comprehensive education programs in mathematics, physics, STEM enrichment, writing, and standardized test preparation (SAT, ACT, AP, and college admissions exams) for 25+ schools, universities, and educational organizations. Designed and led intensive bootcamps and small-group mentorship programs focused on problem-solving, analytical thinking, and exam excellence—helping students achieve top percentile scores and competitive college placements. Partnered with schools and community programs to make advanced STEM and college prep education more accessible to motivated students from diverse backgrounds.</div>
+                <div class="subsection-title">my role</div>
+                <div class="description">As co-founder and lead curriculum architect, I design the educational framework and methodology behind all Axis Academy programs. I personally develop course materials, problem sets, and teaching strategies that translate complex concepts into digestible, engaging content. I lead instructor training to ensure teaching quality and consistency across all programs, and work directly with students in bootcamps and mentorship sessions. I also manage partnerships with schools and organizations, handle program logistics and scheduling, and continuously iterate on our curriculum based on student outcomes and feedback. My role blends educator, strategist, and operator—building not just content, but a sustainable model for delivering high-impact education at scale.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="content" class="section">
+        <div class="container">
+            <h2 class="section-title">content creation</h2>
+            
+            <div class="content-platform">
+                <div class="platform-title">UGC Contracts</div>
+                <div class="date">jun '25 - present</div>
+                <div class="description">Hired by tech startups including Cluely, Codedex, Deepstash, Sanas, StudyX, Vizzy Labs, Duper GG, Jobright, Sprout (prev. PrepAI), Moment, ByChance, Toxic, gymii.ai, Snowday, Opporly, and Fiesto.</div>
+            </div>
+
+            <div class="content-platform">
+                <div class="platform-title"><a href="https://youtube.com/@lana_yaps" target="_blank" class="platform-link">YouTube</a></div>
+                <div class="description">@lana_yaps - Building a personal brand and sharing insights on tech, entrepreneurship, and student life.</div>
+            </div>
+
+            <div class="content-platform">
+                <div class="platform-title"><a href="https://instagram.com/lana_yaps/" target="_blank" class="platform-link">Instagram</a></div>
+                <div class="description">@lana_yaps - Documenting my journey and connecting with the startup community.</div>
+            </div>
+
+            <div class="content-platform">
+                <div class="platform-title"><a href="https://tiktok.com/@lana_yaps" target="_blank" class="platform-link">TikTok</a></div>
+                <div class="description">@lana_yaps - Short-form content about coding, university life, and career insights.</div>
+            </div>
+
+            <div class="content-platform">
+                <div class="platform-title"><a href="https://x.com/lana_yaps" target="_blank" class="platform-link">Twitter</a></div>
+                <div class="description">@lana_yaps - Sharing thoughts on technology, startups, and learning in public.</div>
+            </div>
+
+            <div class="content-platform">
+                <div class="platform-title">Piano Channel</div>
+                <div class="description">Classical piano performances and practice sessions, featuring repertoire from my time at Chamber Music Society at Lincoln Center.</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="logs" class="section">
+        <div class="container">
+            <h2 class="section-title">books</h2>
+            <ul class="log-list">
+                <li class="log-item">
+                    <span class="title">Zero to One - Peter Thiel</span>
+                    <span class="date">oct 2025</span>
+                </li>
+                <li class="log-item">
+                    <span class="title">The Lean Startup - Eric Ries</span>
+                    <span class="date">sep 2025</span>
+                </li>
+                <li class="log-item">
+                    <span class="title">Thinking, Fast and Slow - Daniel Kahneman</span>
+                    <span class="date">aug 2025</span>
+                </li>
+            </ul>
+
+            <h2 class="section-title">papers</h2>
+            <ul class="log-list">
+                <li class="log-item">
+                    <span class="title">Attention Is All You Need - Vaswani et al.</span>
+                    <span class="date">oct 2025</span>
+                </li>
+                <li class="log-item">
+                    <span class="title">Deep Learning - LeCun, Bengio, Hinton</span>
+                    <span class="date">sep 2025</span>
+                </li>
+            </ul>
+
+            <h2 class="section-title">films</h2>
+            <ul class="log-list">
+                <li class="log-item">
+                    <span class="title">The Social Network</span>
+                    <span class="date">oct 2025</span>
+                </li>
+                <li class="log-item">
+                    <span class="title">Succession (TV Series)</span>
+                    <span class="date">sep 2025</span>
+                </li>
+                <li class="log-item">
+                    <span class="title">Oppenheimer</span>
+                    <span class="date">aug 2025</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
